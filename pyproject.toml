@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "cat-py-em"
+version = "0.1.0"
+description = ""
+authors = ["Mike R <cr8syoki@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+pathlib = "^1.0.1"
+click = "^8.0.1"
+DateTime = "^4.3"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
