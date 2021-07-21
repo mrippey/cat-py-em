@@ -1,7 +1,7 @@
 from pathlib import Path 
 from datetime import datetime
 import click 
-
+from prettytable import PrettyTable
 
 def check_file_time(filetime):
     """Function to retreive timestamp
@@ -29,6 +29,11 @@ def view_directory_contents(filepath):
        or the contents of a directory when a directory
        is provided.
     """
+    pt = PrettyTable()
+    pt.field_names = ['File name', 'Last modified']
+
+    pt.align['File name'] = 'l'
+    pt.align['Last modified'] = 'r'
     if Path(filepath).is_file():
         print(Path(filepath).read_text())
     
@@ -38,8 +43,8 @@ def view_directory_contents(filepath):
         
         for pth in test.iterdir():
             file_pth = pth.stat()
-            dir_contents_info = f"[+] {pth.name:<25s}   Last Modified: {check_file_time(file_pth.st_birthtime):<12s}"
-            click.echo(dir_contents_info)
+            pt.add_row([pth.name , f"{check_file_time(file_pth.st_birthtime)}"])
+        click.echo(pt)
 
     
 
